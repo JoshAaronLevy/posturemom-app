@@ -3,5 +3,11 @@
 </template>
 
 <script>
-  export default {}
+export default {};
 </script>
+
+<style>
+.wizard-header {
+  display: none !important;
+}
+</style>
