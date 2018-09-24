@@ -1,17 +1,51 @@
 <template>
   <div id="app">
-    <div><video ref="video" id="video" width="640" height="480" autoplay></video></div>
-    <div><button id="snap" v-on:click="capture()">Snap Photo</button></div>
-    <canvas ref="canvas" id="canvas" width="640" height="480"></canvas>
-    <!-- <ul>
-      <li v-for="c in captures">
-        <img v-bind:src="c" height="50" />
-      </li>
-    </ul> -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-sm-8">
+        <div class="card card-wizard" id="wizardCard">
+          <form-wizard shape="tab"
+                        @on-complete="wizardComplete"
+                        error-color="#FB404B"
+                        color="#35495E">
+            <tab-content title="Goal Posture"
+                          class="col-12"
+                          :before-change="() => validateStep('firstStep')"
+                          icon="nc-icon nc-badge">
+              <first-step ref="firstStep" @on-validated="onStepValidated"></first-step>
+            </tab-content>
+            <tab-content title="Resting Posture"
+                          class="col-12"
+                          :before-change="() => validateStep('secondStep')"
+                          icon="nc-icon nc-notes">
+              <second-step ref="secondStep" @on-validated="onStepValidated"></second-step>
+            </tab-content>
+            <tab-content title="Begin Session"
+                          class="col-12"
+                          icon="nc-icon nc-check-2">
+              <div>
+                <h2 class="text-center text-space">Looking Good!
+                  <br>
+                  <small>Click on "<b>Initialize</b>" to start the posture session</small>
+                </h2>
+              </div>
+            </tab-content>
+
+            <button slot="prev" class="btn btn-default btn-fill btn-wd btn-back">Back</button>
+            <button slot="next" class="btn btn-default btn-fill btn-wd btn-next">Next</button>
+            <button slot="finish" class="btn btn-success btn-fill btn-wd">Initialize</button>
+          </form-wizard>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { FormWizard, TabContent } from 'vue-form-wizard';
+import 'vue-form-wizard/dist/vue-form-wizard.min.css';
+import FirstStep from '../Dashboard/Forms/Wizard/FirstStep.vue';
+import SecondStep from '../Dashboard/Forms/Wizard/SecondStep.vue';
+import swal from 'sweetalert2';
 // import * as posenet from '@tensorflow-models/posenet';
 // import dat from 'dat.gui';
 // import Stats from 'stats.js';
@@ -20,29 +54,44 @@
 
 export default {
   name: 'Session',
-  data() {
-    return {
-      video: {},
-      canvas: {},
-      captures: []
-    };
+  // data() {
+  //   return {
+  //     video: {},
+  //     canvas: {},
+  //     captures: []
+  //   };
+  // },
+  components: {
+    FormWizard,
+    TabContent,
+    FirstStep,
+    SecondStep
   },
-  mounted() {
-    this.video = this.$refs.video;
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-        this.video.src = window.URL.createObjectURL(stream);
-        this.video.play();
-      });
-    }
-  },
+  // mounted() {
+  //   this.video = this.$refs.video;
+  //   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  //     navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+  //       this.video.src = window.URL.createObjectURL(stream);
+  //       this.video.play();
+  //     });
+  //   }
+  // },
   methods: {
-    capture() {
-      this.canvas = this.$refs.canvas;
-      var context = this.canvas
-        .getContext('2d')
-        .drawImage(this.video, 0, 0, 640, 480);
-      this.captures.push(canvas.toDataURL('image/png'));
+    // capture() {
+    //   this.canvas = this.$refs.canvas;
+    //   var context = this.canvas
+    //     .getContext('2d')
+    //     .drawImage(this.video, 0, 0, 640, 480);
+    //   this.captures.push(canvas.toDataURL('image/png'));
+    // },
+    validateStep(ref) {
+      return this.$refs[ref].validate();
+    },
+    onStepValidated(validated, model) {
+      this.wizardModel = { ...this.wizardModel, ...model };
+    },
+    wizardComplete() {
+      swal('Good job!', 'You clicked the finish button!', 'success');
     }
   }
 };

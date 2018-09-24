@@ -1,75 +1,62 @@
 <template>
   <div>
-    <h5 class="text-center">Please tell us more about yourself.</h5>
-    <div class="row">
-      <div class="col-md-6">
-        <fg-input label="First Name"
-                  name="first name"
-                  v-validate="modelValidations.firstName"
-                  v-model="model.firstName"
-                  :error="getError('first name')"
-                  placeholder="ex: Mike">
-        </fg-input>
-      </div>
-      <div class="col-md-6">
-        <fg-input label="Last Nmae"
-                  name="last name"
-                  v-validate="modelValidations.lastName"
-                  v-model="model.lastName"
-                  :error="getError('last name')"
-                  placeholder="ex: Andrew">
-        </fg-input>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <fg-input label="Email"
-                  placeholder="Email"
-                  type="email"
-                  name="email"
-                  v-validate="modelValidations.email"
-                  :error="getError('email')"
-                  v-model="model.email">
-        </fg-input>
-      </div>
+    <h5 class="text-center">Please set your goal posture.</h5>
+    <div class="row video-session">
+      <div><button class="btn btn-danger" id="snap" v-on:click="capture()">Capture</button></div>
+      <div><video ref="video" id="video" width="640" height="480" autoplay></video></div>
+      <canvas ref="canvas" id="canvas" width="640" height="480"></canvas>
     </div>
   </div>
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        model: {
-          firstName: '',
-          lastName: '',
-          email: ''
-        },
-        modelValidations: {
-          firstName: {
-            min: 5
-          },
-          lastName: {
-            min: 5
-          },
-          email: {
-            required: true,
-            email: true
-          }
-        }
-      }
-    },
-    methods: {
-      getError (fieldName) {
-        return this.errors.first(fieldName)
-      },
-      validate () {
-        return this.$validator.validateAll().then(res => {
-          this.$emit('on-validated', res, this.model)
-          return res
-        })
-      }
+export default {
+  data() {
+    return {
+      video: {},
+      canvas: {},
+      captures: []
+    };
+  },
+  mounted() {
+    this.video = this.$refs.video;
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+        this.video.src = window.URL.createObjectURL(stream);
+        this.video.play();
+      });
+    }
+  },
+  methods: {
+    capture() {
+      this.canvas = this.$refs.canvas;
+      var context = this.canvas
+        .getContext('2d')
+        .drawImage(this.video, 0, 0, 640, 480);
+      this.captures.push(canvas.toDataURL('image/png'));
     }
   }
+};
 </script>
-<style>
+<style scoped>
+body {
+  background-color: #f0f0f0;
+}
+#app {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+#video {
+  background-color: #000000;
+}
+#canvas {
+  display: none;
+}
+li {
+  display: inline;
+  padding: 5px;
+}
+.video-session {
+  flex-direction: column;
+}
 </style>
