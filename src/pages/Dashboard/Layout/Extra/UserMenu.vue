@@ -4,11 +4,11 @@
       <img src="static/img/default-avatar.png" alt="avatar"/>
     </div> -->
     <div class="info">
-      <a data-toggle="collapse" :aria-expanded="!isClosed" @click.stop="toggleMenu" href="#">
-          <span>
-            {{title}}
-            <b class="caret"></b>
-          </span>
+      <span class="welcome">
+        Welcome back, {{title}}!
+        <!-- <b class="caret"></b> -->
+      </span>
+      <!-- <a data-toggle="collapse" :aria-expanded="!isClosed" @click.stop="toggleMenu" href="#"> -->
       </a>
       <div class="clearfix"></div>
       <div>
@@ -50,7 +50,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Josh Lovely'
+      default: 'Josh'
     }
   },
   data() {
@@ -68,5 +68,10 @@ export default {
 <style>
 .collapsed {
   transition: opacity 1s;
+}
+.welcome {
+  padding-left: 20px;
+  font-weight: 700;
+  color: #fff !important;
 }
 </style>
