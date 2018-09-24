@@ -50,10 +50,13 @@ const VectorMaps = () =>
 // Calendar
 const Calendar = () =>
   import('src/pages/Dashboard/Calendar/CalendarRoute.vue')
-// Charts
 // Session
 const Session = () =>
   import('src/pages/Dashboard/Session.vue')
+// Alerts
+const Alerts = () =>
+  import('src/pages/Dashboard/Alerts.vue')
+// Charts
 const Charts = () =>
   import('src/pages/Dashboard/Charts.vue')
 // DataTable
@@ -210,7 +213,7 @@ let lockPage = {
 
 const routes = [{
     path: '/',
-    redirect: '/admin/overview'
+    redirect: '/admin/session'
   },
   componentsMenu,
   formsMenu,
@@ -243,6 +246,11 @@ const routes = [{
         path: 'session',
         name: 'Session',
         component: Session
+      },
+      {
+        path: 'alerts',
+        name: 'Alerts',
+        component: Alerts
       },
       {
         path: 'datatable',

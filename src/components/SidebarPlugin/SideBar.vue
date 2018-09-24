@@ -6,14 +6,14 @@
         :data-active-color="activeColor">
     <div class="sidebar-wrapper" ref="sidebarScrollArea">
       <div class="logo">
-        <a class="logo-mini"
+        <!-- <a class="logo-mini"
           href="/">
           <div class="logo-img">
               <img :src="logo" alt="logo">
           </div>
-        </a>
-        <a href="" class="simple-text logo-normal">
-          {{ title }}
+        </a> -->
+        <a href="/" class="simple-text logo-normal">
+          PostureMom
         </a>
       </div>
       <slot>
@@ -125,5 +125,12 @@ export default {
   .nav-mobile-menu {
     display: none;
   }
+}
+
+.logo-normal {
+  margin-left: 20px;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
 }
 </style>

@@ -32,7 +32,7 @@ export default {
       var context = this.canvas
         .getContext('2d')
         .drawImage(this.video, 0, 0, 640, 480);
-      this.captures.push(canvas.toDataURL('image/png'));
+      // this.captures.push(canvas.toDataURL('image/png'));
       return validate();
     },
     validate() {
