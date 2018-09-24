@@ -20,11 +20,22 @@
 </template>
 
 <script>
-import * as posenet from '@tensorflow-models/posenet';
+// import * as posenet from '@tensorflow-models/posenet';
 // import dat from 'dat.gui';
 // import Stats from 'stats.js';
-import { drawKeypoints, drawSkeleton, drawBoundingBox } from '../../demo_util';
+// import { drawKeypoints, drawSkeleton, drawBoundingBox } from '../../demo_util';
+import * as camera from '../../camera.js';
 
-export default {};
+export default {
+  name: 'Session',
+  data() {
+    return {};
+  },
+  mounted() {
+    const videoWidth = 900;
+    const videoHeight = 750;
+    // const stats = new Stats();
+  }
+};
 </script>
 
