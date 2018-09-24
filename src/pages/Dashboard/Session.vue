@@ -2,7 +2,7 @@
   <div id="app">
     <div class="row d-flex justify-content-center">
       <div class="col-sm-8">
-        <div class="card card-wizard" id="wizardCard">
+        <div class="card card-wizard" id="wizardCard" title="">
           <form-wizard shape="tab"
                         @on-complete="wizardComplete"
                         error-color="#FB404B"
@@ -25,7 +25,7 @@
               <div>
                 <h2 class="text-center text-space">Looking Good!
                   <br>
-                  <small>Click on "<b>Initialize</b>" to start the posture session</small>
+                  <small>Click "<b>Initialize</b>" to start the posture session</small>
                 </h2>
               </div>
             </tab-content>
@@ -115,5 +115,8 @@ body {
 li {
   display: inline;
   padding: 5px;
+}
+.wizard-title {
+  visibility: hidden;
 }
 </style>

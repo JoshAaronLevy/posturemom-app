@@ -33,6 +33,13 @@ export default {
         .getContext('2d')
         .drawImage(this.video, 0, 0, 640, 480);
       this.captures.push(canvas.toDataURL('image/png'));
+      return validate();
+    },
+    validate() {
+      return this.$validator.validateAll().then(res => {
+        this.$emit('on-validated', res, this.model);
+        return res;
+      });
     }
   }
 };
@@ -58,5 +65,9 @@ li {
 }
 .video-session {
   flex-direction: column;
+}
+.btn-danger {
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 </style>
