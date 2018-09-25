@@ -34,7 +34,7 @@ async function setupCamera() {
       'Browser API navigator.mediaDevices.getUserMedia not available');
   }
 
-  const video = document.getElementById('video');
+  const video = await document.getElementById('video');
   video.width = videoWidth;
   video.height = videoHeight;
 

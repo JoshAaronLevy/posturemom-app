@@ -4,7 +4,7 @@
     <div class="row video-session">
       <div><button class="btn btn-danger" id="snap" v-on:click="capture()">Capture</button></div>
       <!-- <div><video ref="video" id="video" width="640" height="480" autoplay></video></div> -->
-      <canvas ref="canvas" id="output" width="640" height="480"></canvas>
+      <canvas v-if="readyToFire" ref="canvas" id="output" width="640" height="480"></canvas>
     </div>
   </div>
 </template>
@@ -14,10 +14,12 @@ export default {
     return {
       video: {},
       canvas: {},
-      captures: []
+      captures: [],
+      readyToFire: false
     };
   },
   mounted() {
+    this.readyToFire = true;
     // this.video = this.$refs.video;
     // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {

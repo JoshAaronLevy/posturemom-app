@@ -46,10 +46,6 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css';
 import FirstStep from '../Dashboard/Forms/Wizard/FirstStep.vue';
 import SecondStep from '../Dashboard/Forms/Wizard/SecondStep.vue';
 import swal from 'sweetalert2';
-// import * as posenet from '@tensorflow-models/posenet';
-// import dat from 'dat.gui';
-// import Stats from 'stats.js';
-// import { drawKeypoints, drawSkeleton, drawBoundingBox } from '../../demo_util';
 import * as camera from '../../camera.js';
 
 export default {
