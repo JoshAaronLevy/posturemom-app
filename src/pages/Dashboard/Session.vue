@@ -89,6 +89,13 @@ export default {
     },
     onStepValidated(validated, model) {
       this.wizardModel = { ...this.wizardModel, ...model };
+      swal({
+        title: 'Looking Good!',
+        text: 'Your posture has been recorded',
+        type: 'success',
+        position: 'top-end'
+      });
+      // swal('Good job!', 'You clicked the finish button!', 'success');
     },
     wizardComplete() {
       swal('Good job!', 'You clicked the finish button!', 'success');

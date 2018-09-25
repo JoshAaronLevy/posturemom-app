@@ -1,19 +1,3 @@
-/**
- * @license
- * Copyright 2018 Google Inc. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * =============================================================================
- */
 import * as posenet from '@tensorflow-models/posenet';
 // import dat from 'dat.gui';
 import Stats from 'stats.js';
@@ -74,7 +58,6 @@ async function setupCamera() {
 async function loadVideo() {
   const video = await setupCamera();
   video.play();
-
   return video;
 }
 
@@ -214,11 +197,9 @@ function detectPoseInRealTime(video, net) {
     if (guiState.changeToArchitecture) {
       // Important to purge variables and free up GPU memory
       guiState.net.dispose();
-
       // Load the PoseNet model weights for either the 0.50, 0.75, 1.00, or 1.01
       // version
       guiState.net = await posenet.load(+guiState.changeToArchitecture);
-
       guiState.changeToArchitecture = null;
     }
 
@@ -229,7 +210,6 @@ function detectPoseInRealTime(video, net) {
     // down the GPU
     const imageScaleFactor = guiState.input.imageScaleFactor;
     const outputStride = +guiState.input.outputStride;
-
     let poses = [];
     let minPoseConfidence;
     let minPartConfidence;
@@ -238,7 +218,6 @@ function detectPoseInRealTime(video, net) {
         const pose = await guiState.net.estimateSinglePose(
           video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
-
         minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
         minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
         break;
@@ -248,7 +227,6 @@ function detectPoseInRealTime(video, net) {
           guiState.multiPoseDetection.maxPoseDetections,
           guiState.multiPoseDetection.minPartConfidence,
           guiState.multiPoseDetection.nmsRadius);
-
         minPoseConfidence = +guiState.multiPoseDetection.minPoseConfidence;
         minPartConfidence = +guiState.multiPoseDetection.minPartConfidence;
         break;
