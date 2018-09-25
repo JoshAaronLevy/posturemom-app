@@ -50,7 +50,7 @@ import swal from 'sweetalert2';
 // import dat from 'dat.gui';
 // import Stats from 'stats.js';
 // import { drawKeypoints, drawSkeleton, drawBoundingBox } from '../../demo_util';
-// import * as camera from '../../camera.js';
+import * as camera from '../../camera.js';
 
 export default {
   name: 'Session',
@@ -93,12 +93,16 @@ export default {
         title: 'Looking Good!',
         text: 'Your posture has been recorded',
         type: 'success',
-        position: 'top-end'
+        position: 'top'
       });
       // swal('Good job!', 'You clicked the finish button!', 'success');
     },
     wizardComplete() {
-      swal('Good job!', 'You clicked the finish button!', 'success');
+      swal({
+        title: 'All Set!',
+        text: 'Your posture session is now in progress',
+        type: 'success'
+      });
     }
   }
 };

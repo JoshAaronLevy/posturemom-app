@@ -3,8 +3,8 @@
     <h5 class="text-center">Please set your goal posture.</h5>
     <div class="row video-session">
       <div><button class="btn btn-danger" id="snap" v-on:click="capture()">Capture</button></div>
-      <div><video ref="video" id="video" width="640" height="480" autoplay></video></div>
-      <canvas ref="canvas" id="canvas" width="640" height="480"></canvas>
+      <!-- <div><video ref="video" id="video" width="640" height="480" autoplay></video></div> -->
+      <canvas ref="canvas" id="output" width="640" height="480"></canvas>
     </div>
   </div>
 </template>
@@ -18,13 +18,13 @@ export default {
     };
   },
   mounted() {
-    this.video = this.$refs.video;
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-        this.video.src = window.URL.createObjectURL(stream);
-        this.video.play();
-      });
-    }
+    // this.video = this.$refs.video;
+    // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+    //     this.video.src = window.URL.createObjectURL(stream);
+    //     this.video.play();
+    //   });
+    // }
   },
   methods: {
     capture() {
@@ -32,7 +32,7 @@ export default {
       var context = this.canvas
         .getContext('2d')
         .drawImage(this.video, 0, 0, 640, 480);
-      // this.captures.push(canvas.toDataURL('image/png'));
+      this.captures.push(canvas.toDataURL('image/png'));
       return validate();
     },
     validate() {
