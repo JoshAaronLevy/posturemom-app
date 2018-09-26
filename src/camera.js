@@ -54,7 +54,6 @@ async function setupCamera() {
     video.onloadedmetadata = () => {
       resolve(video);
     };
-    console.log('Hello bitches');
   });
 }
 

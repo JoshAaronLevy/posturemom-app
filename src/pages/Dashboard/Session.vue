@@ -7,7 +7,7 @@
                         @on-complete="wizardComplete"
                         error-color="#FB404B"
                         color="#35495E">
-            <tab-content title="Goal Posture"
+            <tab-content title="Set Posture"
                           class="col-12"
                           :before-change="() => validateStep('firstStep')"
                           icon="nc-icon nc-camera-20">
