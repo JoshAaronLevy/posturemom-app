@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="text-center">Please set your goal posture.</h4>
+    <h4 class="text-center step-title">1: Set your goal perfect posture</h4>
     <div class="row video-session">
       <div><button class="btn btn-danger" id="snap" v-on:click="capture()">Capture</button></div>
       <canvas v-if="readyToFire" ref="canvas" id="output" width="640" height="480"><video id="video"></video></canvas>
@@ -66,6 +66,10 @@ li {
 }
 .video-session {
   flex-direction: column;
+}
+h4.step-title {
+  margin-top: 0px;
+  font-weight: 500;
 }
 .btn-danger {
   font-size: 18px;
