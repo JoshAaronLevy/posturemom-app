@@ -33,9 +33,12 @@
               <!-- <span class="notification">5</span> -->
               <span class="d-lg-none">Notifications</span>
             </template>
-            <img src="https://s3-us-west-2.amazonaws.com/posturemom/mom.png" height="500" alt="mom" />
+            <div class="alert-quote">
+              <h4>"Sit up straight, Quasimodo..."</h4>
+            </div>
+            <img src="https://s3-us-west-2.amazonaws.com/posturemom/mom.png" height="400" alt="mom" />
           </drop-down>
-          <drop-down position="right">
+          <!-- <drop-down position="right">
             <i slot="title" class="nc-icon nc-circle-09"></i>
             <a class="dropdown-item" href="#">
               <i class="nc-icon nc-email-85"></i> Help
@@ -43,7 +46,7 @@
             <a href="#" class="dropdown-item">
               <i class="nc-icon nc-button-power"></i> Log out
             </a>
-          </drop-down>
+          </drop-down> -->
         </ul>
       </div>
     </div>
@@ -87,5 +90,10 @@ export default {
 <style>
 .navbar-nav {
   margin-right: 300px;
+}
+.alert-quote h4 {
+  font-weight: 700;
+  text-align: center;
+  margin-top: 15px;
 }
 </style>
