@@ -1,10 +1,9 @@
 <template>
   <div>
-    <h5 class="text-center">Please set your goal posture.</h5>
+    <h4 class="text-center">Please set your goal posture.</h4>
     <div class="row video-session">
       <div><button class="btn btn-danger" id="snap" v-on:click="capture()">Capture</button></div>
-      <!-- <div><video ref="video" id="video" width="640" height="480" autoplay></video></div> -->
-      <canvas v-if="readyToFire" ref="canvas" id="output" width="640" height="480"></canvas>
+      <canvas v-if="readyToFire" ref="canvas" id="output" width="640" height="480"><video id="video"></video></canvas>
     </div>
   </div>
 </template>

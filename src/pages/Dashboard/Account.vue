@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h5 class="text-center">Please set your goal posture.</h5>
+    <h4 class="text-center">Please set your goal posture.</h4>
     <div class="row video-session">
       <div><button class="btn btn-danger" id="snap" v-on:click="capture()">Capture</button></div>
       <canvas ref="canvas" id="output" width="640" height="480"></canvas>
@@ -20,6 +20,15 @@ export default {
       captures: []
     };
   },
+  mounted() {
+    // this.video = this.$refs.video;
+    // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+    //     this.video.src = window.URL.createObjectURL(stream);
+    //     this.video.play();
+    //   });
+    // }
+  },
   methods: {
     capture() {
       this.canvas = this.$refs.canvas;
@@ -28,13 +37,13 @@ export default {
         .drawImage(this.video, 0, 0, 640, 480);
       this.captures.push(canvas.toDataURL('image/png'));
       return validate();
+    },
+    validate() {
+      return this.$validator.validateAll().then(res => {
+        this.$emit('on-validated', res, this.model);
+        return res;
+      });
     }
-    // validate() {
-    //   return this.$validator.validateAll().then(res => {
-    //     this.$emit('on-validated', res, this.model);
-    //     return res;
-    //   });
-    // }
   }
 };
 </script>

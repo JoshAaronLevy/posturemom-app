@@ -13,7 +13,7 @@
                           icon="nc-icon nc-badge">
               <first-step ref="firstStep" @on-validated="onStepValidated"></first-step>
             </tab-content>
-            <tab-content title="Resting Posture"
+            <!-- <tab-content title="Resting Posture"
                           class="col-12"
                           :before-change="() => validateStep('secondStep')"
                           icon="nc-icon nc-notes">
@@ -28,7 +28,7 @@
                   <small>Click "<b>Initialize</b>" to start the posture session</small>
                 </h2>
               </div>
-            </tab-content>
+            </tab-content> -->
             <button slot="prev" class="btn btn-default btn-fill btn-wd btn-back">Back</button>
             <button slot="next" class="btn btn-default btn-fill btn-wd btn-next">Next</button>
             <button slot="finish" class="btn btn-success btn-fill btn-wd">Initialize</button>
