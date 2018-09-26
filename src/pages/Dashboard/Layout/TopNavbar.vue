@@ -33,7 +33,7 @@
               <!-- <span class="notification">5</span> -->
               <span class="d-lg-none">Notifications</span>
             </template>
-            <a class="dropdown-item" href="#">Notification 1</a>
+            <img src="https://s3-us-west-2.amazonaws.com/posturemom/mom.png" height="500" alt="mom" />
           </drop-down>
           <drop-down position="right">
             <i slot="title" class="nc-icon nc-circle-09"></i>
@@ -85,4 +85,7 @@ export default {
 };
 </script>
 <style>
+.navbar-nav {
+  margin-right: 300px;
+}
 </style>

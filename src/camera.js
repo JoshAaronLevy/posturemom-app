@@ -65,7 +65,7 @@ async function loadVideo() {
 const guiState = {
   algorithm: 'multi-pose',
   input: {
-    mobileNetArchitecture: isMobile() ? '0.50' : '0.75',
+    mobileNetArchitecture: isMobile() ? '0.50' : '1.01',
     outputStride: 16,
     imageScaleFactor: 0.5,
   },
@@ -75,15 +75,15 @@ const guiState = {
   },
   multiPoseDetection: {
     maxPoseDetections: 5,
-    minPoseConfidence: 0.15,
+    minPoseConfidence: 0.1,
     minPartConfidence: 0.1,
-    nmsRadius: 30.0,
+    nmsRadius: 20.0,
   },
   output: {
     showVideo: true,
     showSkeleton: true,
     showPoints: true,
-    showBoundingBox: false,
+    showBoundingBox: true,
   },
   net: null,
 };

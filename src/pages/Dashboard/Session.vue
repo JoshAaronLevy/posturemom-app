@@ -91,7 +91,6 @@ export default {
         type: 'success',
         position: 'top'
       });
-      // swal('Good job!', 'You clicked the finish button!', 'success');
     },
     wizardComplete() {
       swal({
