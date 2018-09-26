@@ -10,4 +10,7 @@ export default {};
 .wizard-header {
   display: none !important;
 }
+.dg.a {
+  visibility: hidden !important;
+}
 </style>
