@@ -66,7 +66,7 @@ const guiState = {
   algorithm: 'multi-pose',
   input: {
     mobileNetArchitecture: isMobile() ? '0.50' : '1.01',
-    outputStride: 16,
+    outputStride: 32,
     imageScaleFactor: 0.5,
   },
   singlePoseDetection: {
@@ -176,10 +176,10 @@ function setupGui(cameras, net) {
 /**
  * Sets up a frames per second panel on the top-left of the window
  */
-function setupFPS() {
-  stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-  document.body.appendChild(stats.dom);
-}
+// function setupFPS() {
+//   stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+//   document.body.appendChild(stats.dom);
+// }
 
 /**
  * Feeds an image to posenet to estimate poses - this is where the magic
@@ -262,13 +262,10 @@ function detectPoseInRealTime(video, net) {
         }
       }
     });
-
     // End monitoring code for frames per second
     stats.end();
-
     requestAnimationFrame(poseDetectionFrame);
   }
-
   poseDetectionFrame();
 }
 
@@ -277,8 +274,8 @@ function detectPoseInRealTime(video, net) {
  * available camera devices, and setting off the detectPoseInRealTime function.
  */
 export async function bindPage() {
-  // Load the PoseNet model weights with architecture 0.75
-  const net = await posenet.load(0.75);
+  // Load the PoseNet model weights with architecture 1.01
+  const net = await posenet.load(1.01);
 
   // document.getElementById('loading').style.display = 'none';
   // document.getElementById('main').style.display = 'block';
@@ -296,7 +293,7 @@ export async function bindPage() {
   }
 
   setupGui([], net);
-  setupFPS();
+  // setupFPS();
   detectPoseInRealTime(video, net);
 }
 

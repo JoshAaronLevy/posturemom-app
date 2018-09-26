@@ -29,7 +29,6 @@
                 </h2>
               </div>
             </tab-content>
-
             <button slot="prev" class="btn btn-default btn-fill btn-wd btn-back">Back</button>
             <button slot="next" class="btn btn-default btn-fill btn-wd btn-next">Next</button>
             <button slot="finish" class="btn btn-success btn-fill btn-wd">Initialize</button>
@@ -46,51 +45,28 @@ import 'vue-form-wizard/dist/vue-form-wizard.min.css';
 import FirstStep from '../Dashboard/Forms/Wizard/FirstStep.vue';
 import SecondStep from '../Dashboard/Forms/Wizard/SecondStep.vue';
 import swal from 'sweetalert2';
-import * as camera from '../../camera.js';
+// import * as camera from '../../camera.js';
 
 export default {
   name: 'Session',
-  // data() {
-  //   return {
-  //     video: {},
-  //     canvas: {},
-  //     captures: []
-  //   };
-  // },
   components: {
     FormWizard,
     TabContent,
     FirstStep,
     SecondStep
   },
-  // mounted() {
-  //   this.video = this.$refs.video;
-  //   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-  //     navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-  //       this.video.src = window.URL.createObjectURL(stream);
-  //       this.video.play();
-  //     });
-  //   }
-  // },
   methods: {
-    // capture() {
-    //   this.canvas = this.$refs.canvas;
-    //   var context = this.canvas
-    //     .getContext('2d')
-    //     .drawImage(this.video, 0, 0, 640, 480);
-    //   this.captures.push(canvas.toDataURL('image/png'));
-    // },
     validateStep(ref) {
       return this.$refs[ref].validate();
     },
     onStepValidated(validated, model) {
       this.wizardModel = { ...this.wizardModel, ...model };
-      swal({
-        title: 'Looking Good!',
-        text: 'Your posture has been recorded',
-        type: 'success',
-        position: 'top'
-      });
+      // swal({
+      //   title: 'Looking Good!',
+      //   text: 'Your posture has been recorded',
+      //   type: 'success',
+      //   position: 'top'
+      // });
     },
     wizardComplete() {
       swal({

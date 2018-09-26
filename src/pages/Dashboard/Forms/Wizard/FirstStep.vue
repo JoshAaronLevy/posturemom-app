@@ -1,14 +1,23 @@
 <template>
   <div>
-    <h5 class="text-center">Please set your goal posture.</h5>
-    <div class="row video-session">
-      <div><button class="btn btn-danger" id="snap" v-on:click="capture()">Capture</button></div>
-      <!-- <div><video ref="video" id="video" width="640" height="480" autoplay></video></div> -->
-      <canvas v-if="readyToFire" ref="canvas" id="output" width="640" height="480"></canvas>
+    <div v-if="!readyToFire">
+      <h5 class="text-center">Please initialize camera.</h5>
+      <button class="btn btn-primary" id="snap" v-on:click="initCamera">Initialize</button>
+    </div>
+    <div v-if="readyToFire">
+      <h5 class="text-center">Please set your goal posture.</h5>
+      <div class="row video-session">
+        <button class="btn btn-danger" id="snap" v-on:click="capture">Capture</button>
+        <canvas v-if="readyToFire" ref="canvas" id="output" width="640" height="480"></canvas>
+      </div>
     </div>
   </div>
 </template>
+
 <script>
+import swal from 'sweetalert2';
+import * as camera from '../../../../camera.js';
+
 export default {
   data() {
     return {
@@ -18,18 +27,17 @@ export default {
       readyToFire: false
     };
   },
-  mounted() {
-    this.readyToFire = true;
-    // this.video = this.$refs.video;
-    // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    //   navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-    //     this.video.src = window.URL.createObjectURL(stream);
-    //     this.video.play();
-    //   });
-    // }
-  },
   methods: {
+    initCamera() {
+      this.readyToFire = true;
+    },
     capture() {
+      swal({
+        title: 'Looking Good!',
+        text: 'Your posture has been recorded',
+        type: 'success',
+        position: 'top'
+      });
       this.canvas = this.$refs.canvas;
       var context = this.canvas
         .getContext('2d')
@@ -67,6 +75,10 @@ li {
 }
 .video-session {
   flex-direction: column;
+}
+.btn-primary {
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 .btn-danger {
   font-size: 18px;

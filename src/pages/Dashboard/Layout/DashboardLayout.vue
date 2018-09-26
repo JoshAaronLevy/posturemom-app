@@ -10,7 +10,7 @@
         <sidebar-item :link="{name: 'Alerts', icon: 'nc-icon nc-bell-55', path: '/admin/alerts'}"></sidebar-item>
         <sidebar-item :link="{name: 'Charts', icon: 'nc-icon nc-chart-bar-32', path: '/admin/charts'}"></sidebar-item>
         <sidebar-item :link="{name: 'Data Table', icon: 'nc-icon nc-paper-2', path: '/admin/datatable'}"></sidebar-item>
-        <sidebar-item :link="{name: 'Account', icon: 'nc-icon nc-circle-09', path: '/admin/calendar'}"></sidebar-item>
+        <sidebar-item :link="{name: 'Account', icon: 'nc-icon nc-circle-09', path: '/admin/account'}"></sidebar-item>
       </template>
     </side-bar>
     <div class="main-panel">

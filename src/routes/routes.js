@@ -62,6 +62,9 @@ const Charts = () =>
 // DataTable
 const DataTable = () =>
   import('src/pages/Dashboard/DataTable.vue')
+// Account
+const Account = () =>
+  import('src/pages/Dashboard/Account.vue')
 
 let componentsMenu = {
   path: '/components',
@@ -265,7 +268,7 @@ const routes = [{
       {
         path: 'account',
         name: 'Account',
-        component: Calendar
+        component: Account
       }
     ]
   },
