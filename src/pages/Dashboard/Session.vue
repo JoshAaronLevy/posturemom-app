@@ -10,15 +10,15 @@
             <tab-content title="Goal Posture"
                           class="col-12"
                           :before-change="() => validateStep('firstStep')"
-                          icon="nc-icon nc-badge">
+                          icon="nc-icon nc-camera-20">
               <first-step ref="firstStep" @on-validated="onStepValidated"></first-step>
             </tab-content>
-            <tab-content title="Resting Posture"
+            <!-- <tab-content title="Resting Posture"
                           class="col-12"
                           :before-change="() => validateStep('secondStep')"
                           icon="nc-icon nc-notes">
               <second-step ref="secondStep" @on-validated="onStepValidated"></second-step>
-            </tab-content>
+            </tab-content> -->
             <tab-content title="Begin Session"
                           class="col-12"
                           icon="nc-icon nc-check-2">
@@ -30,7 +30,7 @@
               </div>
             </tab-content>
             <button slot="prev" class="btn btn-default btn-fill btn-wd btn-back">Back</button>
-            <button slot="next" class="btn btn-default btn-fill btn-wd btn-next">Next</button>
+            <button slot="next" class="btn btn-default btn-fill btn-wd btn-next">Capture</button>
             <button slot="finish" class="btn btn-success btn-fill btn-wd">Initialize</button>
           </form-wizard>
         </div>
@@ -60,13 +60,13 @@ export default {
       return this.$refs[ref].validate();
     },
     onStepValidated(validated, model) {
+      swal({
+        title: 'Looking Good!',
+        text: 'Your posture has been recorded',
+        type: 'success',
+        confirmButtonText: 'Next'
+      });
       this.wizardModel = { ...this.wizardModel, ...model };
-      // swal({
-      //   title: 'Looking Good!',
-      //   text: 'Your posture has been recorded',
-      //   type: 'success',
-      //   position: 'top'
-      // });
     },
     wizardComplete() {
       swal({

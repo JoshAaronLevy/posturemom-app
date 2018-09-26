@@ -25,6 +25,7 @@ Vue.use(firebaseui)
 Vue.use(firebase)
 Vue.use(auth)
 Vue.use(vuefire)
+Vue.use(require('vue-moment'))
 
 var config = {
   apiKey: "AIzaSyC27wM4IhcA2cTj4oYd8CN-6h82QC9-6To",

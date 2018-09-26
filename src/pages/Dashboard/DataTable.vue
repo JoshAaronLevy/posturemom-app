@@ -25,16 +25,6 @@
             </b-input-group>
           </b-form-group>
         </b-col>
-        <!-- <b-col md="6" class="my-1">
-          <b-form-group horizontal label="Sort By" class="mb-0">
-            <b-input-group>
-              <b-form-select v-model="sortDirection" slot="append">
-                <option value="asc">Low-High</option>
-                <option value="desc">High-Low</option>
-              </b-form-select>
-            </b-input-group>
-          </b-form-group>
-        </b-col> -->
         <b-col md="6" class="my-1">
           <b-form-group horizontal label="Days Back" class="mb-0">
             <b-form-select :options="dayOptions" v-model="daysBack" />
@@ -56,10 +46,10 @@
                 @filtered="onFiltered"
       >
         <template slot="index" slot-scope="row">{{row.index + 1}}</template>
-        <template slot="date" slot-scope="row">{{row.value}}</template>
-        <template slot="peak_value" slot-scope="row">{{row.value}}</template>
+        <template slot="date" slot-scope="row">{{row.value | moment('MM/DD/YYYY')}}</template>
+        <template slot="avg_good" slot-scope="row">{{row.value}}</template>
         <template slot="peak_time" slot-scope="row">{{row.value}}</template>
-        <template slot="trough_value" slot-scope="row">{{row.value}}</template>
+        <template slot="avg_bad" slot-scope="row">{{row.value}}</template>
         <template slot="trough_time" slot-scope="row">{{row.value}}</template>
         <template slot="actions" slot-scope="row">
           <b-button @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
@@ -92,73 +82,73 @@
 <script>
 const items = [
   {
-    date: 40,
-    peak_value: 9,
+    date: '2018-09-23T14:25:10.487',
+    avg_good: 3,
     peak_time: '10:00am',
-    trough_value: 2,
+    avg_bad: 5,
     trough_time: '4:00pm'
   },
   {
-    date: 21,
-    peak_value: 8,
+    date: '2018-09-22T14:25:10.487',
+    avg_good: 2,
     peak_time: '09:00am',
-    trough_value: 2,
+    avg_bad: 6,
     trough_time: '3:00pm'
   },
   {
-    date: 89,
-    peak_value: 8,
+    date: '2018-09-21T14:25:10.487',
+    avg_good: 3,
     peak_time: '09:00am',
-    trough_value: 2,
+    avg_bad: 5,
     trough_time: '4:00pm'
   },
   {
-    date: 38,
-    peak_value: 9,
+    date: '2018-09-20T14:25:10.487',
+    avg_good: 2,
     peak_time: '10:00am',
-    trough_value: 1,
+    avg_bad: 6,
     trough_time: '4:00pm'
   },
   {
-    date: 27,
-    peak_value: 9,
+    date: '2018-09-19T14:25:10.487',
+    avg_good: 1,
     peak_time: '02:00pm',
-    trough_value: 2,
+    avg_bad: 7,
     trough_time: '3:00pm'
   },
   {
-    date: 40,
-    peak_value: 7,
+    date: '2018-09-18T14:25:10.487',
+    avg_good: 3,
     peak_time: '02:00pm',
-    trough_value: 3,
+    avg_bad: 5,
     trough_time: '4:00pm'
   },
   {
-    date: 26,
-    peak_value: 8,
+    date: '2018-09-17T14:25:10.487',
+    avg_good: 4,
     peak_time: '10:00am',
-    trough_value: 1,
+    avg_bad: 4,
     trough_time: '1:00pm'
   },
   {
-    date: 22,
-    peak_value: 9,
+    date: '2018-09-16T14:25:10.487',
+    avg_good: 3,
     peak_time: '09:00am',
-    trough_value: 2,
+    avg_bad: 5,
     trough_time: '4:00pm'
   },
   {
-    date: 38,
-    peak_value: 7,
+    date: '2018-09-15T14:25:10.487',
+    avg_good: 3,
     peak_time: '10:00am',
-    trough_value: 1,
+    avg_bad: 5,
     trough_time: '3:00pm'
   },
   {
-    date: 29,
-    peak_value: 9,
+    date: '2018-09-14T14:25:10.487',
+    avg_good: 3,
     peak_time: '10:00am',
-    trough_value: 2,
+    avg_bad: 5,
     trough_time: '4:00pm'
   }
 ];
@@ -176,26 +166,26 @@ export default {
           sortDirection: 'desc'
         },
         {
-          key: 'peak_value',
-          label: 'Peak Value',
+          key: 'avg_good',
+          label: 'Good Posture Time',
           sortable: true,
           class: 'text-center'
         },
         {
           key: 'peak_time',
-          label: 'Peak Time',
+          label: 'Peak Posture',
           sortable: true,
           class: 'text-center'
         },
         {
-          key: 'trough_value',
-          label: 'Trough Value',
+          key: 'avg_bad',
+          label: 'Bad Posture Time',
           sortable: true,
           class: 'text-center'
         },
         {
           key: 'trough_time',
-          label: 'Trough Time',
+          label: 'Trough Posture',
           sortable: true,
           class: 'text-center'
         }
@@ -237,3 +227,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+tbody {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+</style>
