@@ -1,5 +1,9 @@
 # PostureMom
 
+## Watch Live Demo
+
+[View Presentation](https://www.youtube.com/watch?v=M1_SJuy5KPI)
+
 ### install dependencies
 
 `npm install`
